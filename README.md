@@ -1,4 +1,4 @@
-Smart Contract Scanner
+Smart Contract Scanner - AI-Agent
 
 This Python script provides a dual-mode smart contract scanning tool that interfaces with the SolidityScan API to analyze smart contracts for vulnerabilities and security threats. It supports two operational modes:
 
