@@ -63,6 +63,7 @@ export SOLIDITYSCAN_API_KEY="your_solidityscan_api_key"
 export GAME_API_KEY="your_game_api_key"
 
 On Windows, use:
+
 cmd
 
 set SOLIDITYSCAN_API_KEY=your_solidityscan_api_key
@@ -72,7 +73,7 @@ Usage
 
 Run the script using Python:
 
-python smart_contract_scanner_current.py
+python smart_contract_scanner.py
 
 Main Menu
 
@@ -85,6 +86,7 @@ Agent: Interact with the agent, which guides you through the scanning process st
 Exit: Quit the program.
 
 Direct API Test
+
 Select scan type (Vulnerability Scan or Threat Scan).
 
 Choose a platform ID from the listed options (e.g., 17 for Basescan).
