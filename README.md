@@ -163,7 +163,7 @@ Select a mode:
 Enter your choice (1-3): 1
 
 Smart Contract Scanner - Direct API Test
-=======================================
+--------------------------------------
 Step 0: Select scan type
 1. Vulnerability Scan (v1 API)
 2. Threat Scan (v2 API)
