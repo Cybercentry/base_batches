@@ -192,7 +192,7 @@ Selected Chain: mainnet (ID: 1)
 Step 3: Enter contract address
 Enter Contract Address (must start with 0x): 0x1234...
 
-Agent Test Example
+Agent Example
 
 Enter your choice (1-3): 2
 
@@ -202,7 +202,7 @@ Agent is ready. You can now interact with it.
 First, express your interest in conducting a smart contract scan.
 Type 'exit' to quit the test.
 
-You: I want to scan a contract
+You: I want to scan a smart contract
 
 Step 0: Select scan type
 1. Vulnerability Scan (v1 API)
