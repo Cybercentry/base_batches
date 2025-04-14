@@ -197,7 +197,7 @@ Agent Test Example
 Enter your choice (1-3): 2
 
 Smart Contract Scanner - Agent
-=================================
+--------------------------------------
 Agent is ready. You can now interact with it.
 First, express your interest in conducting a smart contract scan.
 Type 'exit' to quit the test.
