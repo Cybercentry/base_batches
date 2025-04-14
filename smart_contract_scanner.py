@@ -1,7 +1,7 @@
 """
 Smart Contract Scanner with two modes:
 1. Direct API Test - Tests the SolidityScan APIs directly
-2. Agent - Uses the Agent with the Worker, to conduct smart contract vulnerability and threat scans, on asking for parameters individually
+2. Agent - Uses the Agent with the Worker, to conduct smart contract vulnerability and threat scans.
 """
 
 from game_sdk.game.agent import Agent, WorkerConfig
@@ -1242,8 +1242,8 @@ def main():
         print("\nSmart Contract Scanner - Dual Test Suite")
         print("--------------------------------------")
         print("Select a mode:")
-        print("1. Direct API Test (Test the SolidityScan APIs directly)")
-        print("2. Agent (Use the Agent with the Worker)")
+        print("1. Direct API Test (Tests the SolidityScan APIs directly)")
+        print("2. Agent (Uses the Agent with the Worker, to conduct smart contract vulnerability and threat scans)")
         print("3. Exit")
         
         choice = input("\nEnter your choice (1-3): ")
