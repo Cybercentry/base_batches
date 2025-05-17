@@ -1,177 +1,162 @@
-Smart Contract Scanner - AI-Agent
+Smart Contract Scanner
 
-This Python script provides a dual-mode smart contract scanning tool that interfaces with two Solidity Scan APIs to analyse smart contracts for security vulnerabilities and threats. It supports two operational modes:
+This Python script is a standalone tool for scanning smart contracts using the SolidityScan APIs to identify security vulnerabilities and threats. It interacts directly with the SolidityScan APIs, allowing users to input parameters and view detailed scan results.
+The script supports three types of scans:
 
-Direct API Test: Directly interacts with the Solidity Scan APIs to perform scans, allowing administrators to input parameters and view raw API responses.
+Vulnerability Scan (v1 API): Identifies vulnerabilities, security risks, and optimization opportunities in smart contracts.
 
-Agent: Utilising G.A.M.E SDK an AI-Agent-based system (with a worker configuration) to guide users through the scanning process by collecting parameters interactively.
+Threat Scan (v2 API): Performs specialized threat analysis, which may return an initialization response for asynchronous processing or complete results.
 
-The script supports two types of scans:
-
-Vulnerability Scan (v1 API): Identifies vulnerabilities, security risks, and optimisation opportunities in smart contracts.
-
-Threat Scan (v2 API): Performs specialised threat analysis, which may return an initialisation response for asynchronous processing.
+Combined Scan: Runs both vulnerability and threat scans, combining results for a comprehensive analysis.
 
 Features
+Supports multiple blockchain platforms (e.g., Etherscan, BSCScan, PolygonScan, Basescan, Tronscan, etc.).
 
-Supports multiple blockchain platforms (e.g., Etherscan, BSCScan, PolygonScan, Basescan, etc.).
+Comprehensive chain support across various platforms (mainnet, testnet, and custom chains like Sepolia).
 
-Comprehensive chain support across various platforms (mainnet, testnet, and more).
-
-Interactive parameter collection for user-friendly scanning.
+Interactive command-line interface for selecting scan type, platform, chain, and contract address.
 
 Detailed scan results with severity distributions, scores, and reference URLs.
 
-Error handling with retry logic for API requests.
+Robust error handling with retry logic for API requests (up to 3 retries with exponential backoff).
 
 Environment variable support for secure API key management.
 
-Prerequisites
+Option to view full JSON responses for in-depth analysis.
 
+Prerequisites
 Python 3.8 or higher
 
 Required Python packages:
-
 requests
 
-game_sdk (custom SDK for agent-based functionality)
-
-API Keys:
-
-Solidity Scan API key (SOLIDITYSCAN_API_KEY)
-
-Game SDK API key (GAME_API_KEY) for Agent mode
+API Key:
+SolidityScan API key (SOLIDITYSCAN_API_KEY)
 
 Installation
-
 Clone the repository (or download the script):
+
 
 git clone <repository-url>
 cd <repository-directory>
 
 Install dependencies:
 
+
 pip install requests
 
-Note: The game_sdk package is assumed to be a custom or proprietary SDK. Ensure it is installed or available in your environment.
-
 Set up environment variables:
+Set your SolidityScan API key as an environment variable:
+On Linux/macOS:
 
-Set your API keys as environment variables:
 
 export SOLIDITYSCAN_API_KEY="your_solidityscan_api_key"
-export GAME_API_KEY="your_game_api_key"
 
-On Windows, use:
+On Windows (Command Prompt):
 
-cmd
 
 set SOLIDITYSCAN_API_KEY=your_solidityscan_api_key
-set GAME_API_KEY=your_game_api_key
 
 Usage
-
 Run the script using Python:
+
 
 python smart_contract_scanner.py
 
-Main Menu
+Scanning Process
+Select Scan Type:
+Choose from:
+Vulnerability Scan (v1 API)
 
-Upon running, you will see a menu with three options:
+Threat Scan (v2 API)
 
-Direct API Test: Test the Solidity Scan API directly by manually entering scan parameters.
+Combined Scan (Both)
 
-Agent: Interact with the agent, which guides you through the scanning process step-by-step.
+Exit
 
-Exit: Quit the program.
+Select Platform:
+View a list of supported platforms (e.g., etherscan.io (ID: 1), basescan.org (ID: 17)).
 
-Direct API Test
+Enter the platform ID.
 
-Select scan type (Vulnerability Scan or Threat Scan).
+Select Chain:
+View available chains for the selected platform (e.g., mainnet (ID: 1), testnet (ID: 2)).
 
-Choose a platform ID from the listed options (e.g., 17 for Basescan).
+Enter the chain ID.
 
-Select a chain ID (e.g., 1 for mainnet).
+Enter Contract Address:
+Provide a valid contract address (must start with 0x).
 
-Enter the contract address (must start with 0x).
+View Results:
+See a summary of scan results, including severity counts, scores, and reference URLs.
 
-View scan results, with an option to see the full JSON response.
+Optionally view the full JSON response.
 
-Press Enter to return to the main menu.
-
-Agent
-
-Express interest in scanning a contract (e.g., type "scan contract").
-
-Select scan type (1 for Vulnerability Scan, 2 for Threat Scan).
-
-Provide platform ID, chain ID, and contract address when prompted.
-
-View scan results, with an option to see the full JSON response.
-
-Press Enter to return to the main menu.
-
-Type exit at any time to quit the agent test.
+Choose to scan another contract or exit.
 
 Supported Platforms
+The script supports 24 platforms, including:
+Etherscan (ID: 1)
 
-The script supports a wide range of platforms, including:
+BSCScan (ID: 2)
 
-Etherscan (1)
+PolygonScan (ID: 3)
 
-BSCScan (2)
+Basescan (ID: 17)
 
-PolygonScan (3)
+Tronscan (ID: 19)
 
-Basescan (17)
+Lineascan (ID: 21)
 
-Tronscan (19)
+And many others (see full list in the script).
 
-And many others (see full list in the script's platforms state).
-
-Each platform supports specific chains (e.g., mainnet, testnet, or custom chains like Sepolia).
-
+Each platform supports specific chains, such as mainnet, testnet, or custom chains like Sepolia or Shasta.
 Scan Output
-
-Vulnerability Scan:
-
-Risk level, score, and rating
+Vulnerability Scan
+Risk level, score, and rating (e.g., "High", "8.5/10", "Good")
 
 Counts of critical, high, medium, and low vulnerabilities
 
-Security risks, optimisation opportunities, and informational issues
+Security risks, optimization opportunities, and informational issues
 
-Contract name, URL, scan type, and detailed scan URL
+Contract name, URL, scan type, lines analyzed, and detailed scan URL
 
-Threat Scan:
+Threat Scan
+Initialization Response (if asynchronous):
+Scan ID, status, request UUID, and total detectors
 
-Initialisation response (scan ID, status) or complete results
+Complete Results:
+Threat score, scan status
 
-Threat score, scan status, and severity counts (Beneficial, Low Risk, etc.)
+Severity counts (Beneficial, No Impact, Low Risk, Moderate Risk, High Risk, Unavailable)
 
-Pass/fail/skipped issue counts and detailed scan URL
+Pass/fail/skipped issue counts
+
+Detailed scan URL
+
+Combined Scan
+Combines vulnerability and threat scan results
+
+Includes all metrics from both scans (e.g., vulnerability counts, threat score, severity distributions)
+
+Indicates if both scans were successful
+
+Provides separate URLs for vulnerability and threat scan results
 
 Example
 
-Direct API Test Example
+Standalone Smart Contract Scanner
+================================
+Using SolidityScan API Key: abcd...wxyz
 
-Smart Contract Scanner - Dual Test Suite
---------------------------------------
-Select a mode:
-1. Direct API Test
-2. Agent
-3. Exit
-
-Enter your choice (1-3): 1
-
-Smart Contract Scanner - Direct API Test
---------------------------------------
 Step 0: Select scan type
 1. Vulnerability Scan (v1 API)
 2. Threat Scan (v2 API)
+3. Combined Scan (Both)
+4. Exit
 
-Enter scan type (1 or 2): 1
-Selected Scan Type: Vulnerability Scan
+Enter scan type (1-4): 3
+Selected Scan Type: Combined Scan
 
 Step 1: Select a platform
 Available Platforms:
@@ -194,56 +179,57 @@ Selected Chain: mainnet (ID: 1)
 Step 3: Enter contract address
 Enter Contract Address (must start with 0x): 0x1234...
 
-Agent Example
+Performing combined scan on contract 0x1234... on basescan.org (Platform ID: 17, Chain ID: 1)...
 
-Enter your choice (1-3): 2
+Scan Status: DONE
+Message: Successfully completed both vulnerability and threat scans for contract 0x1234...
 
-Smart Contract Scanner - Agent
---------------------------------------
-Agent is ready. You can now interact with it.
-First, express your interest in conducting a smart contract scan.
-Type 'exit' to quit the test.
+Scan Results:
+- Contract Name: ExampleContract
+- Both Scans Successful: True
+- Vulnerability Scan Results:
+  - Score: 8.5 (Good)
+  - Total Vulnerabilities: 5
+  - Security Risks: 2
+  - Optimization Opportunities: 1
+  - Informational Issues: 2
+- Threat Scan Results:
+  - Threat Score: 75
+  - Issues by Severity:
+    - Beneficial: 1
+    - No Impact: 2
+    - Low Risk: 1
+    - Moderate Risk: 0
+    - High Risk: 0
+    - Unavailable: 0
+  - Issue Status:
+    - Pass: 3
+    - Fail: 1
+    - Skipped: 0
 
-You: I want to scan a smart contract
+Vulnerability scan results available at: https://solidityscan.com/report/...
+Threat scan results available at: https://solidityscan.com/report/...
 
-Step 0: Select scan type
-1. Vulnerability Scan (v1 API)
-2. Threat Scan (v2 API)
-
-Enter scan type (1 or 2): 1
-Selected Scan Type: Vulnerability Scan
-
-Step 1: Select a platform
-Available Platforms:
-- etherscan.io (ID: 1)
-- bscscan.com (ID: 2)
-- basescan.org (ID: 17)
-...
-
-Enter Platform ID: 17
-...
+Do you want to see the full JSON response? (yes/no): no
+Do you want to scan another contract? (yes/no): no
+Exiting...
 
 Notes
-Threat Scan Limitations: The v2 API for threat scans may return an initialisation response, indicating that results will be delivered asynchronously to configured endpoints. Check the Solidity Scan documentation for details on retrieving these results.
+Threat Scan Limitations: The v2 API for threat scans may return an initialization response, indicating asynchronous processing. Results are pushed to configured endpoints or must be retrieved separately. Check the SolidityScan documentation for details.
 
-API Key Security: Store API keys securely in environment variables, not in the script or version control.
+API Key Security: Store the SOLIDITYSCAN_API_KEY securely in environment variables, not in the script or version control.
 
-Error Handling: The script includes retry logic for API timeouts and validates inputs (e.g., contract address format).
+Error Handling: The script validates inputs (e.g., contract address format) and includes retry logic for API timeouts.
 
-Extensibility: The script's state management supports adding new platforms and chains easily.
+Extensibility: The script's platform and chain data can be easily updated to support new blockchains.
+
+Next Steps
+The next phase of development involves enhancing the scanner by integrating it with the Base AgentKit. This will introduce an AI-agent-based interface to streamline user interactions, guide users through the scanning process with natural language prompts, and potentially automate parameter selection and result interpretation. The Base AgentKit will replace the current command-line interface with a more intuitive and user-friendly experience, making the tool accessible to a broader audience, including those with limited technical expertise.
 
 Contributing
-
-Feel free to submit issues or pull requests to improve the script. Suggestions for new features, bug fixes, or additional platform support are welcome.
-
-License
-
-This project is licensed under the MIT License. 
+Submit issues or pull requests to improve the script. Suggestions for new features, bug fixes, or additional platform support are welcome.
 
 Acknowledgments
+Built with the SolidityScan Vulnerability Nancy (v1 and v2 APIs) for smart contract scanning.
 
-Built with the Solidity Scan Vulnerability and Threat Scan APIs for smart contract scanning.
-
-Uses the game_sdk for agent-based functionality.
-
-Comprehensive platform and chain data sourced from Solidity Scan's parameters.
+Comprehensive platform and chain data sourced from SolidityScan's parameters.
