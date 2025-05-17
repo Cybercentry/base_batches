@@ -1,8 +1,5 @@
 """
-Standalone Smart Contract Scanner
-
-This version doesn't require the game_sdk module and provides direct access to the
-vulnerability and threat scanning functionality.
+Cybercentry - Smart Contract Scanner - AI Agent
 """
 
 import os
