@@ -8,7 +8,7 @@ Threat Scan (v2 API): Performs specialized threat analysis, which may return an 
 
 Combined Scan: Runs both vulnerability and threat scans, combining results for a comprehensive analysis.
 
-Features Supports multiple blockchain platforms (e.g., Etherscan, BSCScan, PolygonScan, Basescan, Tronscan, etc.).
+Features Supports multiple blockchain platforms (e.g., Basescan, Etherscan, BSCScan, PolygonScan, Basescan, Tronscan, etc.).
 
 Comprehensive chain support across various platforms (mainnet, testnet, and custom chains like Sepolia).
 
